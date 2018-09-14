@@ -3,23 +3,6 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 /**
- *
- * @returns {Array<String|Number|AsIs>}
- */
-const cratePathSequence = () => [];
-
-/**
- *
- * @param {Array<String|Number|AsIs>} sequence
- * @param {String|Number|AsIs} name
- */
-const appendToPathSequence = (sequence, name) => {
-  sequence.push(name);
-
-  return sequence;
-};
-
-/**
  * Wrap any value with AsIs() to pass it to string as is without ant wrapping
  * or dot prior to name.
  * @param {*} value
@@ -63,24 +46,48 @@ const appendPathNameToString = (str, name) => {
   return `${string}["${name}"]`;
 };
 
-/**
- * @param {Array<String|Number|AsIs>} sequence
- * @param {String|Number|AsIs} [lastName]
- */
-const buildPath = (sequence, lastName) => {
-  const path = sequence.reduce(appendPathNameToString, '');
-
-  if (lastName !== undefined) {
-    return appendPathNameToString(path, lastName);
+class PathSequence {
+  constructor(value) {
+    this.value = String(value) || '';
+    this.lastName = undefined;
   }
 
-  return path;
-};
+  append(name) {
+    this.value = appendPathNameToString(this.value, name);
+    this.lastName = name;
+  }
+
+  appendCustomValue(customString) {
+    this.value = appendPathNameToString(this.value, AsIs(customString));
+    this.lastName = customString;
+  }
+
+  clone() {
+    const sequence = new PathSequence(this.value);
+    sequence.lastName = this.lastName;
+
+    return sequence;
+  }
+
+  getLastName() {
+    return this.lastName;
+  }
+
+  toString() {
+    return this.value;
+  }
+
+  valueOf() {
+    return this.value;
+  }
+}
+
+/**
+ *
+ * @returns {Array<String|Number|AsIs>}
+ */
+const cratePathSequence = value => new PathSequence(value);
 
 exports.cratePathSequence = cratePathSequence;
-exports.appendToPathSequence = appendToPathSequence;
-exports.AsIs = AsIs;
-exports.appendPathNameToString = appendPathNameToString;
-exports.buildPath = buildPath;
-exports.default = buildPath;
+exports.default = PathSequence;
 //# sourceMappingURL=index.js.map

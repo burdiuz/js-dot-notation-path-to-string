@@ -1,5 +1,5 @@
 {
-  "name": "@actualwave/dot-notation-path-to-string",
+  "name": "@actualwave/path-sequence-to-string",
   "description": "Create path sequence and convert it to string for display",
   "version": "0.0.1",
   "main": "index.js",
@@ -10,16 +10,16 @@
     "tree",
     "E4X"
   ],
-  "homepage": "https://github.com/burdiuz/js-dot-notation-path-to-string",
+  "homepage": "https://github.com/burdiuz/js-path-sequence-to-string",
   "bugs": {
-    "url": "https://github.com/burdiuz/js-dot-notation-path-to-string/issues",
+    "url": "https://github.com/burdiuz/js-path-sequence-to-string/issues",
     "email": "burdiuz@gmail.com"
   },
   "license": "MIT",
   "author": "Oleg Galaburda <burdiuz@gmail.com> (http://actualwave.com/)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/burdiuz/js-dot-notation-path-to-string.git"
+    "url": "https://github.com/burdiuz/js-path-sequence-to-string.git"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",

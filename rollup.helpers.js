@@ -8,7 +8,7 @@ import { uglify } from 'rollup-plugin-uglify';
 import { minify } from 'uglify-es';
 
 export const LIBRARY_FILE_NAME = 'index';
-export const LIBRARY_VAR_NAME = 'DotNotationPathToString';
+export const LIBRARY_VAR_NAME = 'PathSequence';
 
 config();
 

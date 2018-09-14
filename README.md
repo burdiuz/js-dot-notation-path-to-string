@@ -1,1 +1,1 @@
-# Dot notation Path to String
+# Path Sequence to String

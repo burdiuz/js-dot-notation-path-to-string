@@ -1,26 +1,9 @@
 /**
- *
- * @returns {Array<String|Number|AsIs>}
- */
-export const cratePathSequence = () => [];
-
-/**
- *
- * @param {Array<String|Number|AsIs>} sequence
- * @param {String|Number|AsIs} name
- */
-export const appendToPathSequence = (sequence, name) => {
-  sequence.push(name);
-
-  return sequence;
-};
-
-/**
  * Wrap any value with AsIs() to pass it to string as is without ant wrapping
  * or dot prior to name.
  * @param {*} value
  */
-export function AsIs(value) {
+function AsIs(value) {
   if (this instanceof AsIs) {
     this.value = value;
   } else {
@@ -41,7 +24,7 @@ AsIs.prototype[Symbol.toPrimitive] = asIs;
  * @param {String} str
  * @param {String|AsIs|Number} name
  */
-export const appendPathNameToString = (str, name) => {
+const appendPathNameToString = (str, name) => {
   const string = String(str) || '';
 
   if (name instanceof AsIs) {
@@ -59,18 +42,46 @@ export const appendPathNameToString = (str, name) => {
   return `${string}["${name}"]`;
 };
 
-/**
- * @param {Array<String|Number|AsIs>} sequence
- * @param {String|Number|AsIs} [lastName]
- */
-export const buildPath = (sequence, lastName) => {
-  const path = sequence.reduce(appendPathNameToString, '');
-
-  if (lastName !== undefined) {
-    return appendPathNameToString(path, lastName);
+class PathSequence {
+  constructor(value) {
+    this.value = String(value) || '';
+    this.lastName = undefined;
   }
 
-  return path;
-};
+  append(name) {
+    this.value = appendPathNameToString(this.value, name);
+    this.lastName = name;
+  }
 
-export default buildPath;
+  appendCustomValue(customString) {
+    this.value = appendPathNameToString(this.value, AsIs(customString));
+    this.lastName = customString;
+  }
+
+  clone() {
+    const sequence = new PathSequence(this.value);
+    sequence.lastName = this.lastName;
+
+    return sequence;
+  }
+
+  getLastName() {
+    return this.lastName;
+  }
+
+  toString() {
+    return this.value;
+  }
+
+  valueOf() {
+    return this.value;
+  }
+}
+
+/**
+ *
+ * @returns {Array<String|Number|AsIs>}
+ */
+export const cratePathSequence = (value) => new PathSequence(value);
+
+export default PathSequence;
