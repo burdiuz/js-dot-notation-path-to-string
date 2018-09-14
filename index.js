@@ -13,7 +13,11 @@ const cratePathSequence = () => [];
  * @param {Array<String|Number|AsIs>} sequence
  * @param {String|Number|AsIs} name
  */
-const appendToPathSequence = (sequence, name) => sequence.push(name);
+const appendToPathSequence = (sequence, name) => {
+  sequence.push(name);
+
+  return sequence;
+};
 
 /**
  * Wrap any value with AsIs() to pass it to string as is without ant wrapping
