@@ -58,9 +58,14 @@ class PathSequence {
     this.lastName = customString;
   }
 
-  clone() {
+  clone(nextName = undefined) {
     const sequence = new PathSequence(this.value);
-    sequence.lastName = this.lastName;
+
+    if (nextName === undefined) {
+      sequence.lastName = this.lastName;
+    } else {
+      sequence.append(nextName);
+    }
 
     return sequence;
   }
