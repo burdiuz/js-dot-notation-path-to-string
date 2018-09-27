@@ -86,8 +86,8 @@ class PathSequence {
  *
  * @returns {Array<String|Number|AsIs>}
  */
-const cratePathSequence = value => new PathSequence(value);
+const createPathSequence = value => new PathSequence(value);
 
-exports.cratePathSequence = cratePathSequence;
+exports.createPathSequence = createPathSequence;
 exports.default = PathSequence;
 //# sourceMappingURL=index.js.map

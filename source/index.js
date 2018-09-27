@@ -82,6 +82,6 @@ class PathSequence {
  *
  * @returns {Array<String|Number|AsIs>}
  */
-export const cratePathSequence = (value) => new PathSequence(value);
+export const createPathSequence = (value) => new PathSequence(value);
 
 export default PathSequence;
