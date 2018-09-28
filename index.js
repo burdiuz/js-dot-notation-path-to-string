@@ -48,7 +48,7 @@ const appendPathNameToString = (str, name) => {
 
 class PathSequence {
   constructor(value) {
-    this.value = String(value) || '';
+    this.value = value ? String(value) : '';
     this.lastName = undefined;
   }
 
