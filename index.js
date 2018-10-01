@@ -35,6 +35,10 @@ const appendPathNameToString = (str, name) => {
     return `${string}${name}`;
   }
 
+  if (typeof name === 'symbol') {
+    return `${string}[${name}]`;
+  }
+
   if (String(parseInt(name, 10)) === name) {
     return `${string}[${name}]`;
   }
