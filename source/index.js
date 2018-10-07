@@ -35,7 +35,7 @@ const appendPathNameToString = (str, name) => {
     return `${string}[${String(name)}]`;
   }
 
-  if (String(parseInt(name, 10)) === name) {
+  if (String(parseInt(name, 10)) === String(name)) {
     return `${string}[${name}]`;
   }
 
